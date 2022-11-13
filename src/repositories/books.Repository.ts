@@ -2,7 +2,7 @@ import { QueryResult } from 'pg';
 import connection from '../database/database.js';
 import { Book } from '../protocols/book.Protocols.js';
 
-async function insertUnique(book: Book) {
+async function insertUnique(book: Book): Promise<QueryResult> {
 
     return await connection
         .query(`INSERT INTO "books"(
@@ -15,6 +15,8 @@ async function insertUnique(book: Book) {
                 book.pages
             ]);
 }
+
+
 
 export {
     insertUnique,

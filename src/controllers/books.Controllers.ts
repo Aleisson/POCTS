@@ -6,12 +6,18 @@ async function insert(req: Request, res: Response) {
 
     const newBook = req.body as Book;
 
-    //const insertedBook = repository.insertUnique(newBook);
 
-    
+    try {
 
-    res.sendStatus(501);
+        repository.insertUnique(newBook);
 
+        res.sendStatus(201);
+
+    } catch (error) {
+
+        res.sendStatus(500);
+
+    }
 }
 
 export {
