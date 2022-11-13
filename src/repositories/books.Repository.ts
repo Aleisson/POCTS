@@ -22,6 +22,15 @@ async function findAll(): Promise<QueryResult<Book>> {
 
 }
 
+
+async function findUnique(id): Promise<QueryResult<Book>> {
+
+    return await connection.query('SELECT * FROM books WHERE id = $1;', [id])
+
+}
+
+
+
 async function updateUnique(book: Book): Promise<QueryResult> {
 
     return await connection
@@ -37,7 +46,7 @@ async function updateUnique(book: Book): Promise<QueryResult> {
             ]);
 }
 
-async function deleteUnique(book: Book) {
+async function deleteUnique(book: Book): Promise<QueryResult> {
 
     return await connection
         .query(`DELETE FROM "books" WHERE id = $1;`, [book.id]);
@@ -45,9 +54,13 @@ async function deleteUnique(book: Book) {
 }
 
 
+
+
+
 export {
     insertUnique,
     findAll,
+    findUnique,
     updateUnique,
     deleteUnique
 }
