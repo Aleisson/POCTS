@@ -4,5 +4,5 @@ CREATE TABLE "books"(
 	id SERIAL PRIMARY KEY,
 	"author" VARCHAR(80) NOT NULL,
 	"value" INTEGER NOT NULL,
-	"Paginas" INTEGER NOT NULL
+	"pages" INTEGER NOT NULL
 );
