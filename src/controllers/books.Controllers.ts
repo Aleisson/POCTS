@@ -11,15 +11,60 @@ async function insert(req: Request, res: Response) {
 
         repository.insertUnique(newBook);
 
-        res.sendStatus(201);
+        return res.sendStatus(201);
 
     } catch (error) {
-
-        res.sendStatus(500);
+        console.error(error);
+        return res.sendStatus(500);
 
     }
 }
 
+async function find(req: Request, res: Response) {
+
+
+    try {
+
+        const result = await repository.findAll()
+
+        if (result.rowCount) {
+            return res.status(200).send(result.rows)
+        }
+
+        return res.sendStatus(404);
+
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500);
+
+    }
+}
+
+async function update(req: Request, res: Response) {
+
+    const updateBook = req.body as Book;
+
+
+    try {
+
+        const result = await repository.updateUnique(updateBook);
+
+        if (result.rowCount) {
+            return res.sendStatus(200);
+        }
+
+        return res.sendStatus(404);
+
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500);
+
+    }
+}
+
+
 export {
     insert,
+    find,
+    update
 }

@@ -11,13 +11,13 @@ server.use(json());
 
 server.post('/book', controllers.insert);
 
-server.get('/book',(req, res)=>{res.sendStatus(501);})
+server.get('/book', controllers.find);
 
-server.put('/book',(req, res)=>{res.sendStatus(501);})
+server.put('/book', controllers.update);
 
-server.delete('/book',(req, res)=>{res.sendStatus(501);})
+server.delete('/book', (req, res) => { res.sendStatus(501); });
 
-server.get('/book/:id',(req, res)=>{res.sendStatus(501);})
+server.get('/book/:id', (req, res) => { res.sendStatus(501); });
 
 
 server.listen(process.env.PORT, () => {

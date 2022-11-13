@@ -16,8 +16,30 @@ async function insertUnique(book: Book): Promise<QueryResult> {
             ]);
 }
 
+async function findAll(): Promise<QueryResult<Book>> {
+
+    return await connection.query('SELECT * FROM books;')
+
+}
+
+async function updateUnique(book: Book): Promise<QueryResult> {
+    
+    return await connection
+        .query(`UPDATE "books"
+                SET title = $1, author = $2 , value = $3, pages = $4
+                WHERE id = $5;`,
+            [
+                book.title,
+                book.author,
+                book.value,
+                book.pages,
+                book.id
+            ]);
+}
 
 
 export {
     insertUnique,
+    findAll,
+    updateUnique
 }
