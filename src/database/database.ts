@@ -1,4 +1,7 @@
 import pg from 'pg';
+import dotnev from 'dotenv';
+
+dotnev.config();
 
 const { Pool } = pg;
 
