@@ -62,9 +62,30 @@ async function update(req: Request, res: Response) {
     }
 }
 
+async function remove(req: Request, res: Response) {
+
+    const deleteBook = req.body as Book;
+
+    try {
+        const result = await repository.deleteUnique(deleteBook);
+
+        if (result.rowCount) {
+            return res.sendStatus(204);
+        }
+
+        return res.sendStatus(404);
+
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500);
+    }
+
+
+}
 
 export {
     insert,
     find,
-    update
+    update,
+    remove
 }
