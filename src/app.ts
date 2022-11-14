@@ -17,7 +17,7 @@ server.put('/book', controllers.update);
 
 server.delete('/book', controllers.remove);
 
-server.get('/book/:id', controllers.f);
+server.get('/book/:id', controllers.findId);
 
 
 server.listen(process.env.PORT, () => {
